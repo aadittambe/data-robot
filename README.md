@@ -17,9 +17,7 @@ We are going to build a Git scraper using just a GitHub account and the web brow
 
 <img src="img/image_1.png">
 
-We have a two-part goal here:
-- We are first going to use GitHub to scrape this file every 5 minutes, and overwrite it each time. 
-- Then, we are going to execute a Python script to bind the new data to a main file, so that we bind and save our data. 
+Our goal here is to use GitHub to scrape this file every 5 minutes, and overwrite it each time. 
 
 At the end of this tutorial, your repository will have — and be updating — a CSV called `usgs_current.csv` that has the most current data scraped from the USGS website. 
 <img src="img/image_16.png">
