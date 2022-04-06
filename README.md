@@ -22,12 +22,8 @@ We have a two-part goal here:
 - We are first going to use GitHub to scrape this file every 5 minutes, and overwrite it each time. 
 - Then, we are going to execute a Python script to bind the new data to a main file, so that we bind and save our data. 
 
-At the end of this tutorial, your repository will have — and be updating — two files: 
-- a `usgs_current.csv` file that has the current data scraped from the USGS website. 
+At the end of this tutorial, your repository will have — and be updating — a CSV called `usgs_current.csv` that has the most current data scraped from the USGS website. 
 <img src="img/image_16.png">
-- a `usgs_main.csv` file that stores all the data since you began scraping.
-<img src="img/image_17.png">
-
 ## Prelude: Prerequisites
 
 You need a free <a href="https://github.com/" target="_blank">GitHub account</a> to begin this tutorial.
@@ -149,137 +145,11 @@ Wait for five minutes, and navigate back to the "code" tab of your repository. Y
 
 <img src="img/image_8.png">
 
-
-## Act 3: Hello, Python!
-
-We have downloaded the CSV file from USGS, however, every time that the Action runs, this file is going to be overwritten by a new one. In this lesson, you will learn how to introduce a short Python script to the Action workflow that takes a new CSV and adds its new rows to a "main" CSV that we will create. This way, you will keep storing data, instead of overwriting the same file.
-
-### 3.1. Create a Python file from the GitHub repository
-
-From your repository, click on the "Add file" button and then "Create new file" button. 
-
-<img src="img/image_9.png">
-
-Call this script `get_all_data.py`.**Make sure to spell the name of the file correctly — all lowercase, with underscores, not hyphens. Otherwise, the Action will not run.** Paste the following code in the file:
-
-```python
-import pandas as pd # import pandas library for data manipulation and analysis
-from pathlib import Path # import path library to work with file paths
-
-df_current = pd.read_csv('usgs_current.csv')
-
-path = Path("usgs_main.csv")
-
-if path.is_file() == False:
-  # if false, save initial main file  
-  df_current.to_csv("usgs_main.csv", index = False)
-
-else:
-  # if the file already exists, save it to a dataframe and then append to a new one    
-  df_main_old = pd.read_csv("usgs_main.csv")
-  df_main_new = pd.concat([df_main_old,df_current])
-
-  # deduplicate based on unique id
-  df_main_new_drop_dupes = df_main_new.drop_duplicates(subset = "id", keep = "first")
-
-  # save to dataframe and overwrite the old usgs_main file
-  df_main_new_drop_dupes.to_csv("usgs_main.csv", index = False)
-```
-
-Give it a commit message — something like "create python script" — and push the `Commit new file` button.
-
-<img src="img/image_10.png">
-
-
-### 3.2. Understand the Python script
-
-In the Python script, we are first importing libraries that will help us create the file called `usgs_main.csv`. These libraries include `pandas`, `requests`, `json` and `pathlib`.
-
-Then, we will load in the `usgs_current.csv` file, as `df_current`. This file is the one that is being overwritten each time our Action runs. 
-
-Then, we are creating a `usgs_main.csv` file, the first time this script runs. Every time the script runs after that, we are binding the "current" CSV, `usgs_current.csv` to our "main" CSV, `usgs_main.csv`.
-
-Then, we are dropping duplicate rows from the "main" CSV, such that if there is an overlap between data that is scraped, the `usgs_main.csv` will only have unique rows.
-
-### 3.2. Add the Python script to the workflow file
-
-In your GitHub repository, click on the folder `.github/workflows`.
-
-<img src="img/image_11.png">
-
-Then, click on the `main.yml` file.
-
-<img src="img/image_12.png">
-
-Then, click on the "pencil" icon to edit the file.
-
-<img src="img/image_13.png">
-
-In the file, we are going to add steps to execute the Python script we just saved immediately after the scraper runs. 
-
-Add steps 3 and 4 (as shown below) to the workflow file, after step 2 and before committing and pushing. The complete workflow file will look like this: 
-
-```yaml
-name: Scrape latest data
-
-on:
-  push:
-  workflow_dispatch:
-  schedule:
-    - cron:  '*/5 * * * *'
-
-jobs:
-  scrape:
-    runs-on: ubuntu-latest
-    steps:
-    # Step 1: Prepare the environment
-    - name: Check out this repo
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-    # Step 2: Get the latest data and store it as a CSV
-    - name: Fetch latest data
-      run: |-        
-        curl "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.csv" -o usgs_current.csv
-    # Step 3: Install requirements, so Python script can run
-    - name: Install requirements
-      run: python -m pip install pandas 
-    # Step 4    
-    - name: Run script to create main csv
-      run: python get_all_data.py     
-    # Step 5
-    - name: Commit and push if it changed
-      run: |-
-        git config user.name "Automated"
-        git config user.email "actions@users.noreply.github.com"
-        git add -A
-        timestamp=$(date -u)
-        git commit -m "Latest data: ${timestamp}" || exit 0
-        git push
-
-```
-
-In step 3, we are asking the Actions workflow to install some requirements — the libraries our Python script used — to the virtual machine running the Action. 
-
-In step 4, we are are asking the workflow to run our Python script `get_all_data.py`, much like you would execute a Python script from the command line. 
-
-Step 5 is the same as before, where we `add`, `commit` and `push` our changes.
-
-Let's commit this file. Push the green `start commit` button, then write a message, something like "update main.yml," and push the `commit changes` button.
-
-<img src="img/image_14.png">
-
-### 3.3. Watch the workflow run
-
-Navigate back to `code` tab of your repository. And notice the newly created `usgs_main.csv` file. Every time our scraper runs, it will add rows to this file.
-
-<img src="img/image_15.png">
-
 ## Epilogue: Hello, analysis!
 
-Now that we are downloading the most current CSV (`usgs_current.csv`) and also aggregating all the data we collect (`usgs_main.csv`), we can run some basic analysis on the file.
+Now that we are downloading the most current CSV (`usgs_current.csv`), we can run some basic analysis on the file.
 
-In our GitHub repository, click on the `usgs_main.csv` file.
+In our GitHub repository, click on the `usgs_current.csv` file.
 
 <img src="img/image_18.png">
 
@@ -308,7 +178,7 @@ After opening the file, click "File" and then "Save a copy in Drive." This will 
 
 If you push the "play" button next to a code chunk, that will execute the code. Since it's a notebook, it will return the result of each step right after the code chunk.
 
-First, we load all the libraries our analysis will require. Then, we load the `usgs_main.csv` file using the `raw` GitHub link. This means every time data updates, we can run this same file and get an updated result.
+First, we load all the libraries our analysis will require. Then, we load the `usgs_current.csv` file using the `raw` GitHub link. This means every time data updates, we can run this same file and get an updated result.
 
 You can replace this URL, with the "raw" URL to the CSV file in your repository. This way, whenevever you run this notebook, it will always pull the most recent version of the CSV.
 
