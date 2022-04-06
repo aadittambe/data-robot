@@ -1,5 +1,13 @@
 # Build a robot that collects data with GitHub Actions
 
+- [About the authors](#about-the-authors)
+- [What you will scrape](#what-you-will-scrape)
+- [Prelude](#prelude)
+- [Act 1: Hello, repository!](#act-1-hello-repository)
+- [Act 2: Hello, Action!](#act-2-hello-action)
+- [Act 3: Hello, Python!](#act-3-hello-python)
+- [Epilogue: Hello, analysis!](#epilogue-hello-analysis)
+
 This tutorial will teach you how to automate basic data collection, and potentially analyse it, with GitHub's free Actions framework.
 
 ## About the authors
