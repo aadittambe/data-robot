@@ -7,7 +7,6 @@ This tutorial will teach you how to automate basic data collection, and potentia
 - [Prelude](#prelude)
 - [Act 1: Hello, repository!](#act-1-hello-repository)
 - [Act 2: Hello, Action!](#act-2-hello-action)
-- [Act 3: Hello, Python!](#act-3-hello-python)
 - [Epilogue: Hello, analysis!](#epilogue-hello-analysis)
 ## About the authors
 
