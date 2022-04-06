@@ -134,7 +134,6 @@ Here is the download URL: `https://earthquake.usgs.gov/earthquakes/feed/v1.0/sum
 ```
 Note: 
 cURL, which stands for client URL, is a command line tool that developers use to transfer data to and from a server. Read more about it <a href="https://developer.ibm.com/articles/what-is-curl-command/#" target="_blank">here</a>.
-
 ```
 
 Then, we commit the results to our repository and push them, in the next step.
@@ -298,9 +297,7 @@ We will be using this CSV (and the URL to this CSV, in particular) for our analy
 
 ```
 Note:
-
 This URL can be used to load the CSV data into a JavaScript visualization — using libraries such as D3 or Chart.js. The visualizations will update in real time as the data changes. 
-
 ```
 
 Next, make a copy of <a href="https://colab.research.google.com/github/aadittambe/actions-pipeline/blob/main/usgs_analysis.ipynb" target="_blank">this notebook</a>.
