@@ -38,17 +38,11 @@ This chapter will walk you through how to create a repository. A GitHub reposito
 
 In your profile on <a href="https://github.com/" target="_blank">GitHub</a>, navigate to the "repositories" tab and click the green "new" button.
 
-<img src="img/image_27.png">
+<img src="img/image_29.png">
 
-Create a repository, call it `nicar22-github-actions`.
+Create a repository, call it `my-data-robot`.
 
 Select public repository, meaning other people who visit your profile can see it. 
-
-Select “Add a README FILE”: this will be a markdown file where you can write a description for your project.
-
-Select “Add .gitignore”: this is a file where you can tell Git what files to track changes of. For example, it’s best practice to not commit API passwords.
-
-For the .gitignore template, choose Python. This will populate the .gitignore file with common files associated with Python projects that don’t need to be committed to Git history. 
 
 <img src="img/image_25.png">
 
