@@ -38,13 +38,13 @@ This chapter will walk you through how to create a repository. A GitHub reposito
 
 In your profile on <a href="https://github.com/" target="_blank">GitHub</a>, navigate to the "repositories" tab and click the green "new" button.
 
-<img src="img/image_29.png">
+<img src="img/image_27.png">
 
 Create a repository, call it `my-data-robot`.
 
-Select public repository, meaning other people who visit your profile can see it. 
+Select public repository, meaning other people who visit your profile can see it.  
 
-<img src="img/image_25.png">
+<img src="img/image_29.png">
 
 ## Act 2: Hello, Action!
 
