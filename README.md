@@ -115,10 +115,12 @@ The `name` keyword denotes an optional name given to the workflow.
 
 The `on` keyword specifies the trigger for this workflow — it’s currently set to run every time you “push” code to the repository, or when you click a manual button, denoted by “workflow_dispatch.” More importantly, it's set to run on a schedule. This schedule is defined by a cron expression, which is tell your computer to execute a command at a particular time.
 
-```
-Note:
+---
+**Note**
+
 Cron, also known as a "cron job," is a process or task that runs periodically on a Unix system. If you are looking to find a cron expression of a schedule, we recommend using a tool such as <a href="https://crontab.guru/" target="_blank">Cron Guru</a> to make the conversion easier. If you're working on GitHub, you can change the expression in your YAML and hover over it, and GitHub will tell you if it's a valid expression.
-```
+
+---
 
 The `jobs` keyword groups together all the commands that the Action will execute. We have called our “job” `scrape`.
 The `runs-on` keyword configures the job to run on the latest version of an Ubuntu Linux runner. This means that the job will execute on a virtual machine hosted by GitHub, which is the latest version of Ubuntu. 
@@ -131,11 +133,12 @@ The `run` keyword tells the job to execute a command on the runner. In this `run
 
 Here is the download URL: `https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.csv`
 
-```
-Note: 
-cURL, which stands for client URL, is a command line tool that developers use to transfer data to and from a server. 
-Read more about it <a href="https://developer.ibm.com/articles/what-is-curl-command/#" target="_blank">here</a>.
-```
+---
+**NOTE**
+
+cURL, which stands for client URL, is a command line tool that developers use to transfer data to and from a server. Read more about it <a href="https://developer.ibm.com/articles/what-is-curl-command/#" target="_blank">here</a>.
+
+---
 
 Then, we commit the results to our repository and push them, in the next step.
 
@@ -296,11 +299,12 @@ This will bring you to the "raw" CSV, that looks like this:
 
 We will be using this CSV (and the URL to this CSV, in particular) for our analysis of data. The URL to this raw CSV will always remain the same, until you move the file to another directory, even if the CSV updates.
 
-```
-Note:
-This URL can be used to load the CSV data into a JavaScript visualization — using libraries such as D3 or Chart.js. 
-The visualizations will update in real time as the data changes. 
-```
+---
+**Note**
+
+This URL can be used to load the CSV data into a JavaScript visualization — using libraries such as D3 or Chart.js. The visualizations will update in real time as the data changes. 
+
+---
 
 Next, make a copy of <a href="https://colab.research.google.com/github/aadittambe/actions-pipeline/blob/main/usgs_analysis.ipynb" target="_blank">this notebook</a>.
 
@@ -320,9 +324,11 @@ This notebook runs simple Python code that performs basic summarizing and groupi
 - one that prints the most recent earthquake and the strongest earthquake
 - another that prints the earthquake with the highest magnitude
 
-```
-Note:
+---
+**Note**
+
 To learn more about getting started with Python notebooks using an a browser-based notebook called a Jupyter notebook, check out <a href="https://www.firstpythonnotebook.org/about/index.html" target="_blank">this</a> textbook made for another NICAR class.
-```
+
+---
 
 This notebook can be modified with code to run advanced analysis on the data we scraped, or any other data set using a `raw` GitHub files.
