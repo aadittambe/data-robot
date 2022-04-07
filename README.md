@@ -142,54 +142,9 @@ Wait for five minutes, and navigate back to the "code" tab of your repository. Y
 
 <img src="img/image_8.png">
 
-## Epilogue: Hello, analysis!
+## Epilogue
 
-Now that we are downloading the most current CSV (`usgs_current.csv`), we can run some basic analysis on the file.
+Want to get notifications when it changes? Check out the "Email on updates" action in this [repoistiory](/lathropd/data-robot/).
 
-In our GitHub repository, click on the `usgs_current.csv` file.
-
-<img src="img/image_18.png">
-
-Then, click on the `Raw` button.
-
-<img src="img/image_19.png">
-
-This will bring you to the "raw" CSV, that looks like this: 
-
-<img src="img/image_20.png">
-
-We will be using this CSV (and the URL to this CSV, in particular) for our analysis of data. The URL to this raw CSV will always remain the same, until you move the file to another directory, even if the CSV updates.
-
----
-**Note**
-
-This URL can be used to load the CSV data into a JavaScript visualization — using libraries such as D3 or Chart.js. The visualizations will update in real time as the data changes. 
-
----
-
-Next, make a copy of <a href="https://colab.research.google.com/github/aadittambe/actions-pipeline/blob/main/usgs_analysis.ipynb" target="_blank">this notebook</a>.
-
-After opening the file, click "File" and then "Save a copy in Drive." This will save the notebook in your Google Drive, so you can edit the code and save the changes.
-
-<img src="img/image_22.png">
-
-If you push the "play" button next to a code chunk, that will execute the code. Since it's a notebook, it will return the result of each step right after the code chunk.
-
-First, we load all the libraries our analysis will require. Then, we load the `usgs_current.csv` file using the `raw` GitHub link. This means every time data updates, we can run this same file and get an updated result.
-
-You can replace this URL, with the "raw" URL to the CSV file in your repository. This way, whenevever you run this notebook, it will always pull the most recent version of the CSV.
-
-<img src="img/image_24.png">
-
-This notebook runs simple Python code that performs basic summarizing and grouping actions to print two sentences:
-- one that prints the most recent earthquake and the strongest earthquake
-- another that prints the earthquake with the highest magnitude
-
----
-**Note**
-
-To learn more about getting started with Python notebooks using an a browser-based notebook called a Jupyter notebook, check out <a href="https://www.firstpythonnotebook.org/about/index.html" target="_blank">this</a> textbook made for another NICAR class.
-
----
 
 This notebook can be modified with code to run advanced analysis on the data we scraped, or any other data set using a `raw` GitHub files.
