@@ -144,7 +144,7 @@ Wait for five minutes, and navigate back to the "code" tab of your repository. Y
 
 ## Epilogue
 
-Want to get notifications when it changes? Check out the "Email on updates" action in this [repoistiory](/lathropd/data-robot/).
+Want to get notifications when it changes? Check out the "Email on updates" action in this [repository](https://github.com/lathropd/data-robot/).
 
 
 This notebook can be modified with code to run advanced analysis on the data we scraped, or any other data set using a `raw` GitHub files.
